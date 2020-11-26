@@ -1,0 +1,1628 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/25/2020 11:12:19 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WINDOWS-SERVER-"
+  DTS:CreatorName="WINDOWS-SERVER-\marvin9207"
+  DTS:DTSID="{D1C70173-B565-43E8-8C89-6F41C2C90BBC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="dataflow"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{A9A89D17-4D56-499E-93CF-2F21D4796BA0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WINDOWS-SERVER-.NORTHWND]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{390B42EF-AF72-477C-9143-F9BCA70260E2}"
+      DTS:ObjectName="WINDOWS-SERVER-.NORTHWND">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=WINDOWS-SERVER-;Initial Catalog=NORTHWND;Integrated Security=True;Application Name=SSIS-dataflow-{390B42EF-AF72-477C-9143-F9BCA70260E2}WINDOWS-SERVER-.NORTHWND;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WINDOWS-SERVER-.NORTHWND1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E5E10CEF-1EB0-47A8-A5BA-8B8179847432}"
+      DTS:ObjectName="WINDOWS-SERVER-.NORTHWND1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=WINDOWS-SERVER-;Initial Catalog=NORTHWND;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WINDOWS-SERVER-.semana101]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{F1419D6B-96A6-41DD-A1BB-1827C729C5C5}"
+      DTS:ObjectName="WINDOWS-SERVER-.semana101">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=WINDOWS-SERVER-;Initial Catalog=semana10;Integrated Security=True;Application Name=SSIS-dataflow-{F1419D6B-96A6-41DD-A1BB-1827C729C5C5}WINDOWS-SERVER-.semana101;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{88F105C3-E0B7-4317-9BFA-97AF91681C13}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Descontinuados">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{51B4F184-5540-4DE1-B550-874942736C5B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="EnFabricacion">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Leer tabla productos en un rango de ids"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{08F1CA3F-C7C7-4079-86AB-B9ECE5C27AA1}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Leer tabla productos en un rango de ids"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Leer tabla productos en un rango de ids\Contar Descontinuados"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Contar Descontinuados">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::Descontinuados</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Leer tabla productos en un rango de ids\Contar Descontinuados.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Contar Descontinuados.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Leer tabla productos en un rango de ids\Contar Descontinuados.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Leer tabla productos en un rango de ids\Contar en Fabricacion"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Contar en Fabricacion">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::EnFabricacion</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Leer tabla productos en un rango de ids\Contar en Fabricacion.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Contar en Fabricacion.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Leer tabla productos en un rango de ids\Contar en Fabricacion.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Extraer primer letra de ProductName en nueva columna"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Inputs[Derived Column Input].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductName"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductName]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Output].Columns[FirstLetter]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="40"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Output].Columns[FirstLetter]"
+                      name="FirstLetter"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[UPPER](#{Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductName]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">UPPER(ProductName)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Leer tabla productos en un rango de ids\Merge"
+              componentClassID="Microsoft.Merge"
+              contactInfo="Merge;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple sorted data flows into one sorted data flow. Unlike the Merge Join, all rows flow to the output. For example, combine two sorted lists of customers into a single sorted list. If sorting is not important, use the Union All transformation. "
+              name="Merge"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 1]"
+                  name="Merge Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 1].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[ProductID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 1].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductName"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[ProductName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[ProductName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 1].Columns[Discontinued]"
+                      cachedDataType="bool"
+                      cachedName="Discontinued"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[Discontinued]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[Discontinued]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 1].Columns[InitialLetters]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="InitialLetters"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[InitialLetters]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[InitialLetters]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 1].Columns[FirstLetter]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="FirstLetter"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[FirstLetter]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[FirstLetter]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 2]"
+                  name="Merge Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 2].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[ProductID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 2].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductName"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[ProductName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[ProductName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 2].Columns[Discontinued]"
+                      cachedDataType="bool"
+                      cachedName="Discontinued"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[Discontinued]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[Discontinued]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 2].Columns[InitialLetters]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="InitialLetters"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[InitialLetters]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[InitialLetters]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 2].Columns[FirstLetter]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="FirstLetter"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[FirstLetter]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[FirstLetter]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1]"
+                  isSorted="true"
+                  name="Merge Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[ProductID]"
+                      name="ProductID"
+                      sortKeyPosition="1" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[ProductName]"
+                      name="ProductName" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[Discontinued]"
+                      dataType="bool"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[Discontinued]"
+                      name="Discontinued" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[InitialLetters]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[InitialLetters]"
+                      name="InitialLetters" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[FirstLetter]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[FirstLetter]"
+                      name="FirstLetter" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Leer tabla productos en un rango de ids\Se guardan datos"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Se guardan datos"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Products"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[WINDOWS-SERVER-.NORTHWND]"
+                  connectionManagerRefId="Package.ConnectionManagers[WINDOWS-SERVER-.NORTHWND]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[ProductID]"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductName"
+                      externalMetadataColumnId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[ProductName]"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[ProductName]" />
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].Columns[Discontinued]"
+                      cachedDataType="bool"
+                      cachedName="Discontinued"
+                      externalMetadataColumnId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[Discontinued]"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[Discontinued]" />
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].Columns[FirstLetter]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="FirstLetter"
+                      externalMetadataColumnId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[FirstLetter]"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1].Columns[FirstLetter]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[SupplierID]"
+                      dataType="i4"
+                      name="SupplierID" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[CategoryID]"
+                      dataType="i4"
+                      name="CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="20"
+                      name="QuantityPerUnit" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[UnitPrice]"
+                      dataType="numeric"
+                      name="UnitPrice"
+                      precision="19"
+                      scale="255" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[UnitsInStock]"
+                      dataType="i2"
+                      name="UnitsInStock" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[UnitsOnOrder]"
+                      dataType="i2"
+                      name="UnitsOnOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[ReorderLevel]"
+                      dataType="i2"
+                      name="ReorderLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[Discontinued]"
+                      dataType="bool"
+                      name="Discontinued" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input].ExternalColumns[FirstLetter]"
+                      dataType="wstr"
+                      length="10"
+                      name="FirstLetter" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Separar por descontinuados"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Inputs[Conditional Split Input].Columns[Discontinued]"
+                      cachedDataType="bool"
+                      cachedName="Discontinued"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[Discontinued]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Outputs[Descontinuado]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Descontinuado"
+                  synchronousInputId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[Discontinued]} ==  TRUE </property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">Discontinued ==  TRUE </property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Outputs[En fabricacion]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="En fabricacion"
+                  synchronousInputId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Leer tabla productos en un rango de ids\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Leer tabla productos en un rango de ids\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort.Inputs[Sort Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort.Inputs[Sort Input].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductName"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort.Inputs[Sort Input].Columns[Discontinued]"
+                      cachedDataType="bool"
+                      cachedName="Discontinued"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[Discontinued]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort.Inputs[Sort Input].Columns[InitialLetters]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="InitialLetters"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[InitialLetters]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort.Inputs[Sort Input].Columns[FirstLetter]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="FirstLetter"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Output].Columns[FirstLetter]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[ProductID]"
+                      name="ProductID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[ProductName]"
+                      name="ProductName">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductName]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[Discontinued]"
+                      dataType="bool"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[Discontinued]"
+                      name="Discontinued">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[Discontinued]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[InitialLetters]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[InitialLetters]"
+                      name="InitialLetters">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[InitialLetters]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[FirstLetter]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output].Columns[FirstLetter]"
+                      name="FirstLetter">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Output].Columns[FirstLetter]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Leer tabla productos en un rango de ids\Sort 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Leer tabla productos en un rango de ids\Sort 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort 1.Inputs[Sort Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort 1.Inputs[Sort Input].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductName"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort 1.Inputs[Sort Input].Columns[Discontinued]"
+                      cachedDataType="bool"
+                      cachedName="Discontinued"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[Discontinued]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort 1.Inputs[Sort Input].Columns[InitialLetters]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="InitialLetters"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[InitialLetters]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort 1.Inputs[Sort Input].Columns[FirstLetter]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="FirstLetter"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Output].Columns[FirstLetter]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[ProductID]"
+                      name="ProductID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[ProductName]"
+                      name="ProductName">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductName]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[Discontinued]"
+                      dataType="bool"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[Discontinued]"
+                      name="Discontinued">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[Discontinued]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[InitialLetters]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[InitialLetters]"
+                      name="InitialLetters">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[InitialLetters]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[FirstLetter]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output].Columns[FirstLetter]"
+                      name="FirstLetter">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Output].Columns[FirstLetter]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Trayendo los productos del rango 1 al 20"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+  ProductID, ProductName, Discontinued, FirstLetter as InitialLetters
+  FROM Products
+  WHERE ProductID between 1 and 20</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[WINDOWS-SERVER-.NORTHWND]"
+                  connectionManagerRefId="Package.ConnectionManagers[WINDOWS-SERVER-.NORTHWND]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].ExternalColumns[ProductName]"
+                      length="40"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[ProductName]"
+                      name="ProductName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[Discontinued]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].ExternalColumns[Discontinued]"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[Discontinued]"
+                      name="Discontinued"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[InitialLetters]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].ExternalColumns[InitialLetters]"
+                      length="10"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].Columns[InitialLetters]"
+                      name="InitialLetters"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].ExternalColumns[Discontinued]"
+                      dataType="bool"
+                      name="Discontinued" />
+                    <externalMetadataColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output].ExternalColumns[InitialLetters]"
+                      dataType="wstr"
+                      length="10"
+                      name="InitialLetters" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output].Columns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output].Columns[ProductName]"
+                      name="ProductName" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output].Columns[Discontinued]"
+                      dataType="bool"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output].Columns[Discontinued]"
+                      name="Discontinued" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output].Columns[InitialLetters]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output].Columns[InitialLetters]"
+                      name="InitialLetters" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Leer tabla productos en un rango de ids.Paths[ADO NET Source Output]"
+              endId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Inputs[Derived Column Input]"
+              name="ADO NET Source Output"
+              startId="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Leer tabla productos en un rango de ids.Paths[Derived Column Output]"
+              endId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Inputs[Conditional Split Input]"
+              name="Derived Column Output"
+              startId="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Leer tabla productos en un rango de ids.Paths[Descontinuado]"
+              endId="Package\Leer tabla productos en un rango de ids\Contar Descontinuados.Inputs[Row Count Input 1]"
+              name="Descontinuado"
+              startId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Outputs[Descontinuado]" />
+            <path
+              refId="Package\Leer tabla productos en un rango de ids.Paths[En fabricacion]"
+              endId="Package\Leer tabla productos en un rango de ids\Contar en Fabricacion.Inputs[Row Count Input 1]"
+              name="En fabricacion"
+              startId="Package\Leer tabla productos en un rango de ids\Separar por descontinuados.Outputs[En fabricacion]" />
+            <path
+              refId="Package\Leer tabla productos en un rango de ids.Paths[Merge Output 1]"
+              endId="Package\Leer tabla productos en un rango de ids\Se guardan datos.Inputs[ADO NET Destination Input]"
+              name="Merge Output 1"
+              startId="Package\Leer tabla productos en un rango de ids\Merge.Outputs[Merge Output 1]" />
+            <path
+              refId="Package\Leer tabla productos en un rango de ids.Paths[Row Count Output 1]"
+              endId="Package\Leer tabla productos en un rango de ids\Sort.Inputs[Sort Input]"
+              name="Row Count Output 1"
+              startId="Package\Leer tabla productos en un rango de ids\Contar Descontinuados.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Leer tabla productos en un rango de ids.Paths[Row Count Output 11]"
+              endId="Package\Leer tabla productos en un rango de ids\Sort 1.Inputs[Sort Input]"
+              name="Row Count Output 1"
+              startId="Package\Leer tabla productos en un rango de ids\Contar en Fabricacion.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Leer tabla productos en un rango de ids.Paths[Sort Output]"
+              endId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 2]"
+              name="Sort Output"
+              startId="Package\Leer tabla productos en un rango de ids\Sort 1.Outputs[Sort Output]" />
+            <path
+              refId="Package\Leer tabla productos en un rango de ids.Paths[Sort Output1]"
+              endId="Package\Leer tabla productos en un rango de ids\Merge.Inputs[Merge Input 1]"
+              name="Sort Output"
+              startId="Package\Leer tabla productos en un rango de ids\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="267,42"
+          Id="Package\Leer tabla productos en un rango de ids"
+          TopLeft="194,117" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Leer tabla productos en un rango de ids">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="273,42"
+          Id="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20"
+          TopLeft="260.222222222222,96.5555555555556" />
+        <NodeLayout
+          Size="342,42"
+          Id="Package\Leer tabla productos en un rango de ids\Extraer primer letra de ProductName en nueva columna"
+          TopLeft="222,166" />
+        <EdgeLayout
+          Id="Package\Leer tabla productos en un rango de ids.Paths[ADO NET Source Output]"
+          TopLeft="394.861111111111,138.555555555556">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.4444444444445"
+              Start="0,0"
+              End="0,19.9444444444445">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.9444444444445" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Leer tabla productos en un rango de ids\Separar por descontinuados"
+          TopLeft="282,234" />
+        <EdgeLayout
+          Id="Package\Leer tabla productos en un rango de ids.Paths[Derived Column Output]"
+          TopLeft="390,208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Leer tabla productos en un rango de ids\Contar Descontinuados"
+          TopLeft="119,319" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Leer tabla productos en un rango de ids\Contar en Fabricacion"
+          TopLeft="465,333" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Leer tabla productos en un rango de ids\Sort"
+          TopLeft="177,397" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\Leer tabla productos en un rango de ids\Sort 1"
+          TopLeft="521,403" />
+        <NodeLayout
+          Size="108,42"
+          Id="Package\Leer tabla productos en un rango de ids\Merge"
+          TopLeft="352.222222222222,456.666666666667" />
+        <EdgeLayout
+          Id="Package\Leer tabla productos en un rango de ids.Paths[Descontinuado]"
+          TopLeft="387,276">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-174,43"
+              Start="0,0"
+              End="-174,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="-4,21.5" />
+                  <mssgle:LineSegment
+                    End="-170,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-170,21.5"
+                    Point2="-174,21.5"
+                    Point3="-174,25.5" />
+                  <mssgle:LineSegment
+                    End="-174,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-120.05203125,26.5,66.1040625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Leer tabla productos en un rango de ids.Paths[En fabricacion]"
+          TopLeft="420.666666666667,276">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="134.833333333333,57"
+              Start="0,0"
+              End="134.833333333333,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.0586011342155" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.0586011342155"
+                    Point2="0,23.0586011342155"
+                    Point3="4,23.0586011342155" />
+                  <mssgle:LineSegment
+                    End="130.833333333333,23.0586011342155" />
+                  <mssgle:CubicBezierSegment
+                    Point1="130.833333333333,23.0586011342155"
+                    Point2="134.833333333333,23.0586011342155"
+                    Point3="134.833333333333,27.0586011342155" />
+                  <mssgle:LineSegment
+                    End="134.833333333333,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="36.1297330729167,28.0586011342155,62.5738671875,9.7978515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Leer tabla productos en un rango de ids.Paths[Row Count Output 1]"
+          TopLeft="213,361">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13,36"
+              Start="0,0"
+              End="13,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="4,18" />
+                  <mssgle:LineSegment
+                    End="9,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9,18"
+                    Point2="13,18"
+                    Point3="13,22" />
+                  <mssgle:LineSegment
+                    End="13,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Leer tabla productos en un rango de ids.Paths[Row Count Output 11]"
+          TopLeft="555.5,375">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19,28"
+              Start="0,0"
+              End="19,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10"
+                    Point2="0,14"
+                    Point3="4,14" />
+                  <mssgle:LineSegment
+                    End="15,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15,14"
+                    Point2="19,14"
+                    Point3="19,18" />
+                  <mssgle:LineSegment
+                    End="19,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Leer tabla productos en un rango de ids.Paths[Sort Output]"
+          TopLeft="521,424">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-60.7777777777777,53.6666666666667"
+              Start="0,0"
+              End="-53.2777777777777,53.6666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-26.3888888888889,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-26.3888888888889,0"
+                    Point2="-30.3888888888889,0"
+                    Point3="-30.3888888888889,4" />
+                  <mssgle:LineSegment
+                    End="-30.3888888888889,49.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-30.3888888888889,49.6666666666667"
+                    Point2="-30.3888888888889,53.6666666666667"
+                    Point3="-34.3888888888889,53.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-53.2777777777777,53.6666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Leer tabla productos en un rango de ids.Paths[Sort Output1]"
+          TopLeft="275,418">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77.2222222222223,59.6666666666667"
+              Start="0,0"
+              End="69.7222222222223,59.6666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="34.6111111111111,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34.6111111111111,0"
+                    Point2="38.6111111111111,0"
+                    Point3="38.6111111111111,4" />
+                  <mssgle:LineSegment
+                    End="38.6111111111111,55.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="38.6111111111111,55.6666666666667"
+                    Point2="38.6111111111111,59.6666666666667"
+                    Point3="42.6111111111111,59.6666666666667" />
+                  <mssgle:LineSegment
+                    End="69.7222222222223,59.6666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Leer tabla productos en un rango de ids\Se guardan datos"
+          TopLeft="356.666666666667,554.444444444445" />
+        <EdgeLayout
+          Id="Package\Leer tabla productos en un rango de ids.Paths[Merge Output 1]"
+          TopLeft="406.222222222222,498.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="31.4444444444443,55.7777777777779"
+              Start="0,0"
+              End="31.4444444444443,48.2777777777779">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.8888888888889" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.8888888888889"
+                    Point2="0,27.8888888888889"
+                    Point3="4,27.8888888888889" />
+                  <mssgle:LineSegment
+                    End="27.4444444444443,27.8888888888889" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27.4444444444443,27.8888888888889"
+                    Point2="31.4444444444443,27.8888888888889"
+                    Point3="31.4444444444443,31.8888888888889" />
+                  <mssgle:LineSegment
+                    End="31.4444444444443,48.2777777777779" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Leer tabla productos en un rango de ids\Trayendo los productos del rango 1 al 20">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Leer tabla productos en un rango de ids\Se guardan datos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
