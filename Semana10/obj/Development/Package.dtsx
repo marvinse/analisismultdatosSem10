@@ -11,11 +11,70 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="56"
-  DTS:VersionGUID="{0844A1D2-3BFF-4992-BDE5-429DA3D13890}">
+  DTS:VersionBuild="74"
+  DTS:VersionGUID="{9AF853EE-ADB0-4F59-B77C-9F80601FB690}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Flat File Connection"
+      DTS:DTSID="{79813E52-EEE0-4CC2-9ADC-5C626B5D0F25}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::Path]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Archivos">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FechaProceso"
+              DTS:DTSID="{0167D225-E926-45F3-A1B7-A8110E1F507D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Identificador"
+              DTS:DTSID="{92965B1F-71B1-4C10-86F3-8165B20AD391}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Agregado"
+              DTS:DTSID="{C8217BDB-2A06-4DA6-891F-54C18BB5AFC4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DescripciÃ³n"
+              DTS:DTSID="{15FC8AF1-D39C-443E-91F3-35D8CBEBA29D}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[WINDOWS-SERVER-.semana10 1]"
       DTS:CreationName="OLEDB"
@@ -74,6 +133,15 @@
       DTS:ObjectName="NombreTabla">
       <DTS:VariableValue
         DTS:DataType="8">None</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{100D4D22-08D3-4467-ADC4-1EC93F6B788E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Path">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Archivos</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -144,7 +212,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Consultar si tiene cargar archivos y parametro es Si"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -166,7 +234,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Finaliza Ejecucion"
       DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExpressionTask
@@ -181,8 +249,475 @@
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
       DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{0AEE40ED-532E-42AC-BFC9-B244E9D19776}"
+        DTS:ObjectName="{0AEE40ED-532E-42AC-BFC9-B244E9D19776}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Archivos" />
+            <FEFEProperty
+              FileSpec="*.dat" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
       <DTS:Variables />
-      <DTS:Executables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{760BD798-68D3-4317-AC41-0C11599CC523}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+                  name="Guardar datos"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DatosArchivoUno"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                      expressionType="Notify"
+                      name="BatchSize">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                      expressionType="Notify"
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                      expressionType="Notify"
+                      name="UseBulkInsertWhenPossible">true</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[WINDOWS-SERVER-.semana101]"
+                      connectionManagerRefId="Package.ConnectionManagers[WINDOWS-SERVER-.semana101]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input]"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="ADO NET Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].Columns[FechaProceso]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="FechaProceso"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].ExternalColumns[FechaProceso]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[FechaProceso]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].Columns[Agregado]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Agregado"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].ExternalColumns[Agregado]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[Agregado]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].Columns[Descripcion]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Descripcion"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].ExternalColumns[Descripcion]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[Descripcion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].Columns[Identificador]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Identificador"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].ExternalColumns[id]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[Identificador]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].Columns[FechasSumadas]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="FechasSumadas"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].ExternalColumns[FechaFinal]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Outputs[Derived Column Output].Columns[FechasSumadas]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].ExternalColumns[id]"
+                          dataType="i4"
+                          name="id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].ExternalColumns[Identificador]"
+                          dataType="i4"
+                          name="Identificador" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].ExternalColumns[Descripcion]"
+                          dataType="wstr"
+                          length="50"
+                          name="Descripcion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].ExternalColumns[FechaProceso]"
+                          dataType="wstr"
+                          length="50"
+                          name="FechaProceso" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].ExternalColumns[Agregado]"
+                          dataType="i4"
+                          name="Agregado" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input].ExternalColumns[FechaFinal]"
+                          dataType="wstr"
+                          length="50"
+                          name="FechaFinal" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Outputs[ADO NET Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="ADO NET Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="Se lee el archivo"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[FechaProceso]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].ExternalColumns[FechaProceso]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[FechaProceso]"
+                          name="FechaProceso"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[Identificador]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].ExternalColumns[Identificador]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[Identificador]"
+                          name="Identificador"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[Agregado]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].ExternalColumns[Agregado]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[Agregado]"
+                          name="Agregado"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[Descripcion]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].ExternalColumns[DescripciÃ³n]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[Descripcion]"
+                          name="Descripcion"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].ExternalColumns[FechaProceso]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="FechaProceso" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].ExternalColumns[Identificador]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Identificador" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].ExternalColumns[Agregado]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Agregado" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].ExternalColumns[DescripciÃ³n]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DescripciÃ³n" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Suma de fechas"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Inputs[Derived Column Input].Columns[FechaProceso]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="FechaProceso"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[FechaProceso]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Inputs[Derived Column Input].Columns[Agregado]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Agregado"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[Agregado]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Outputs[Derived Column Output].Columns[FechasSumadas]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Outputs[Derived Column Output].Columns[FechasSumadas]"
+                          name="FechasSumadas"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[DATEADD]("day",(DT_I4)#{Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[Agregado]},(DT_DATE)#{Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output].Columns[FechaProceso]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">DATEADD("day",(DT_I4)Agregado,(DT_DATE)FechaProceso)</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\Data Flow Task.Paths[Derived Column Output]"
+                  endId="Package\Foreach Loop Container\Data Flow Task\Guardar datos.Inputs[ADO NET Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\Data Flow Task.Paths[Flat File Source Output]"
+                  endId="Package\Foreach Loop Container\Data Flow Task\Suma de fechas.Inputs[Derived Column Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{4EF8F98E-D1E2-4189-A4FD-EDA476471582}"
+          DTS:ObjectName="{4EF8F98E-D1E2-4189-A4FD-EDA476471582}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::Path" />
+      </DTS:ForEachVariableMappings>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\No existe"
@@ -193,7 +728,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="No existe"
       DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExpressionTask
@@ -225,7 +760,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="No tiene carga de archivos"
       DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExpressionTask
@@ -327,6 +862,13 @@
       DTS:ObjectName="Constraint 7"
       DTS:To="Package\No existe truncar tabla"
       DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{EA6C0A00-86DE-47CA-B734-49CD6F286DB1}"
+      DTS:From="Package\No existe"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Consultar si tiene cargar archivos y parametro es Si" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -347,64 +889,68 @@
         <NodeLayout
           Size="202,42"
           Id="Package\Consultar si la tabla existe"
-          TopLeft="128.666666666667,135.222222222222" />
+          TopLeft="104.222222222223,106.333333333333" />
         <NodeLayout
           Size="321,42"
           Id="Package\Consultar si tiene cargar archivos y parametro es Si"
-          TopLeft="202.222222222222,346.222222222222" />
+          TopLeft="202.222222222222,286.222222222222" />
         <NodeLayout
           Size="162,42"
           Id="Package\Finaliza Ejecucion"
-          TopLeft="342.666666666667,558" />
+          TopLeft="312.666666666667,406.888888888889" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Foreach Loop Container\Data Flow Task"
+          TopLeft="52,20" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="214,55"
-          Size="214,98"
+          PanelSize="239,125"
+          Size="239,168"
           Id="Package\Foreach Loop Container"
-          TopLeft="47.4444444444445,446.666666666667" />
+          TopLeft="45.2222222222223,347.777777777778" />
         <NodeLayout
           Size="123,42"
           Id="Package\No existe"
-          TopLeft="391.777777777778,216.444444444444" />
+          TopLeft="294.138888888889,193.944444444444" />
         <NodeLayout
           Size="186,42"
           Id="Package\No existe truncar tabla"
-          TopLeft="606,130" />
+          TopLeft="546,132.5" />
         <NodeLayout
           Size="204,42"
           Id="Package\No tiene carga de archivos"
-          TopLeft="503.444444444444,482" />
+          TopLeft="481.222222222222,349.777777777778" />
         <NodeLayout
           Size="144,42"
           Id="Package\Truncar Tabla"
-          TopLeft="78.8888888888889,248.222222222222" />
+          TopLeft="48.0555555555556,180.444444444444" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="338.666666666667,82">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-109,53.2222222222223"
+              EndConnector="-133.444444444444,24.3333333333331"
               Start="0,0"
-              End="-109,45.7222222222223">
+              End="-133.444444444444,16.8333333333331">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.456079115765" />
+                    End="0,5.80977312390916" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,17.456079115765"
-                    Point2="0,21.456079115765"
-                    Point3="-4,21.456079115765" />
+                    Point1="0,5.80977312390916"
+                    Point2="0,9.80977312390916"
+                    Point3="-4,9.80977312390916" />
                   <mssgle:LineSegment
-                    End="-105,21.456079115765" />
+                    End="-129.444444444444,9.80977312390916" />
                   <mssgle:CubicBezierSegment
-                    Point1="-105,21.456079115765"
-                    Point2="-109,21.456079115765"
-                    Point3="-109,25.456079115765" />
+                    Point1="-129.444444444444,9.80977312390916"
+                    Point2="-133.444444444444,9.80977312390916"
+                    Point3="-133.444444444444,13.8097731239092" />
                   <mssgle:LineSegment
-                    End="-109,45.7222222222223" />
+                    End="-133.444444444444,16.8333333333331" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -415,206 +961,54 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="262,177.222222222222">
+          TopLeft="237.555555555556,148.333333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="191.277777777778,39.222222222222"
+              EndConnector="118.083333333333,45.6111111111109"
               Start="0,0"
-              End="191.277777777778,31.722222222222">
+              End="118.083333333333,38.1111111111109">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11.8738266753983" />
+                    End="0,14.4595066579349" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,11.8738266753983"
-                    Point2="0,15.8738266753983"
-                    Point3="4,15.8738266753983" />
+                    Point1="0,14.4595066579349"
+                    Point2="0,18.4595066579349"
+                    Point3="4,18.4595066579349" />
                   <mssgle:LineSegment
-                    End="187.277777777778,15.8738266753983" />
+                    End="114.083333333333,18.4595066579349" />
                   <mssgle:CubicBezierSegment
-                    Point1="187.277777777778,15.8738266753983"
-                    Point2="191.277777777778,15.8738266753983"
-                    Point3="191.277777777778,19.8738266753983" />
+                    Point1="114.083333333333,18.4595066579349"
+                    Point2="118.083333333333,18.4595066579349"
+                    Point3="118.083333333333,22.4595066579349" />
                   <mssgle:LineSegment
-                    End="191.277777777778,31.722222222222" />
+                    End="118.083333333333,38.1111111111109" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="80.3975412326388,20.8738266753983,30.4826953125,9.7490234375"
+              BoundingBox="43.8003190104166,23.4595066579349,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="261.444444444445,495.666666666667">
+          TopLeft="284.222222222222,429.833333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="81.2222222222225,83.333333333333"
+              EndConnector="28.4444444444447,0"
               Start="0,0"
-              End="73.7222222222225,83.333333333333">
+              End="20.9444444444447,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="36.6111111111113,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="36.6111111111113,0"
-                    Point2="40.6111111111113,0"
-                    Point3="40.6111111111113,4" />
-                  <mssgle:LineSegment
-                    End="40.6111111111113,79.333333333333" />
-                  <mssgle:CubicBezierSegment
-                    Point1="40.6111111111113,79.333333333333"
-                    Point2="40.6111111111113,83.333333333333"
-                    Point3="44.6111111111113,83.333333333333" />
-                  <mssgle:LineSegment
-                    End="73.7222222222225,83.333333333333" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="197.333333333333,177.222222222222">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-46.4444444444445,70.9999999999999"
-              Start="0,0"
-              End="-46.4444444444445,63.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.7347740667976" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,24.7347740667976"
-                    Point2="0,28.7347740667976"
-                    Point3="-4,28.7347740667976" />
-                  <mssgle:LineSegment
-                    End="-42.4444444444445,28.7347740667976" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-42.4444444444445,28.7347740667976"
-                    Point2="-46.4444444444445,28.7347740667976"
-                    Point3="-46.4444444444445,32.7347740667976" />
-                  <mssgle:LineSegment
-                    End="-46.4444444444445,63.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="414.888888888889,388.222222222222">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="190.555555555555,93.777777777778"
-              Start="0,0"
-              End="190.555555555555,86.277777777778">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,33.7901770338225" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,33.7901770338225"
-                    Point2="0,37.7901770338225"
-                    Point3="4,37.7901770338225" />
-                  <mssgle:LineSegment
-                    End="186.555555555555,37.7901770338225" />
-                  <mssgle:CubicBezierSegment
-                    Point1="186.555555555555,37.7901770338225"
-                    Point2="190.555555555555,37.7901770338225"
-                    Point3="190.555555555555,41.7901770338225" />
-                  <mssgle:LineSegment
-                    End="190.555555555555,86.277777777778" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="80.0364301215277,42.7901770338225,30.4826953125,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="388,82">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="311,48"
-              Start="0,0"
-              End="311,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.3989637305699" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.3989637305699"
-                    Point2="0,19.39896373057"
-                    Point3="4,19.39896373057" />
-                  <mssgle:LineSegment
-                    End="307,19.39896373057" />
-                  <mssgle:CubicBezierSegment
-                    Point1="307,19.39896373057"
-                    Point2="311,19.39896373057"
-                    Point3="311,23.39896373057" />
-                  <mssgle:LineSegment
-                    End="311,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="140.25865234375,24.39896373057,30.4826953125,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="310.555555555555,388.222222222222">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-156.111111111111,58.444444444445"
-              Start="0,0"
-              End="-156.111111111111,50.944444444445">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.5516980092308" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19.5516980092308"
-                    Point2="0,23.5516980092308"
-                    Point3="-4,23.5516980092308" />
-                  <mssgle:LineSegment
-                    End="-152.111111111111,23.5516980092308" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-152.111111111111,23.5516980092308"
-                    Point2="-156.111111111111,23.5516980092308"
-                    Point3="-156.111111111111,27.5516980092308" />
-                  <mssgle:LineSegment
-                    End="-156.111111111111,50.944444444445" />
+                    End="20.9444444444447,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -625,30 +1019,64 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="150.888888888889,290.222222222222">
+          TopLeft="120.055555555556,222.444444444444">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="211.833333333333,56"
+              EndConnector="164.416666666666,63.7777777777778"
               Start="0,0"
-              End="211.833333333333,48.5">
+              End="164.416666666666,56.2777777777778">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24" />
+                    End="0,38.1682114658428" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,24"
-                    Point2="0,28"
-                    Point3="4,28" />
+                    Point1="0,38.1682114658428"
+                    Point2="0,42.1682114658428"
+                    Point3="4,42.1682114658428" />
                   <mssgle:LineSegment
-                    End="207.833333333333,28" />
+                    End="160.416666666666,42.1682114658428" />
                   <mssgle:CubicBezierSegment
-                    Point1="207.833333333333,28"
-                    Point2="211.833333333333,28"
-                    Point3="211.833333333333,32" />
+                    Point1="160.416666666666,42.1682114658428"
+                    Point2="164.416666666666,42.1682114658428"
+                    Point3="164.416666666666,46.1682114658428" />
                   <mssgle:LineSegment
-                    End="211.833333333333,48.5" />
+                    End="164.416666666666,56.2777777777778" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="172.888888888889,148.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-52.8333333333336,32.1111111111111"
+              Start="0,0"
+              End="-52.8333333333336,24.6111111111111">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.99585243396638" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.99585243396638"
+                    Point2="0,12.9958524339664"
+                    Point3="-4,12.9958524339664" />
+                  <mssgle:LineSegment
+                    End="-48.8333333333336,12.9958524339664" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-48.8333333333336,12.9958524339664"
+                    Point2="-52.8333333333336,12.9958524339664"
+                    Point3="-52.8333333333336,16.9958524339664" />
+                  <mssgle:LineSegment
+                    End="-52.8333333333336,24.6111111111111" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -659,30 +1087,146 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="699,172">
+          TopLeft="639,174.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-284.111111111111,174.222222222222"
+              EndConnector="-198.027777777778,111.722222222222"
               Start="0,0"
-              End="-284.111111111111,166.722222222222">
+              End="-198.027777777778,104.222222222222">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,100.014879107253" />
+                    End="0,69.8678338482662" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,100.014879107253"
-                    Point2="0,104.014879107253"
-                    Point3="-4,104.014879107253" />
+                    Point1="0,69.8678338482662"
+                    Point2="0,73.8678338482662"
+                    Point3="-4,73.8678338482662" />
                   <mssgle:LineSegment
-                    End="-280.111111111111,104.014879107253" />
+                    End="-194.027777777778,73.8678338482662" />
                   <mssgle:CubicBezierSegment
-                    Point1="-280.111111111111,104.014879107253"
-                    Point2="-284.111111111111,104.014879107253"
-                    Point3="-284.111111111111,108.014879107253" />
+                    Point1="-194.027777777778,73.8678338482662"
+                    Point2="-198.027777777778,73.8678338482662"
+                    Point3="-198.027777777778,77.8678338482662" />
                   <mssgle:LineSegment
-                    End="-284.111111111111,166.722222222222" />
+                    End="-198.027777777778,104.222222222222" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="202.222222222222,307.222222222222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-37.4999999999997,40.555555555556"
+              Start="0,0"
+              End="-37.4999999999997,33.055555555556">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-33.4999999999997,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-33.4999999999997,0"
+                    Point2="-37.4999999999997,0"
+                    Point3="-37.4999999999997,4" />
+                  <mssgle:LineSegment
+                    End="-37.4999999999997,33.055555555556" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="523.222222222222,307.222222222222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59.9999999999998,42.5555555555558"
+              Start="0,0"
+              End="59.9999999999998,35.0555555555558">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="55.9999999999998,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="55.9999999999998,0"
+                    Point2="59.9999999999998,0"
+                    Point3="59.9999999999998,4" />
+                  <mssgle:LineSegment
+                    End="59.9999999999998,35.0555555555558" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="44.7586523437498,-15.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="437.333333333333,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="201.666666666667,50.5"
+              Start="0,0"
+              End="201.666666666667,43">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.3586387434555" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.3586387434555"
+                    Point2="0,20.3586387434555"
+                    Point3="4,20.3586387434555" />
+                  <mssgle:LineSegment
+                    End="197.666666666667,20.3586387434555" />
+                  <mssgle:CubicBezierSegment
+                    Point1="197.666666666667,20.3586387434555"
+                    Point2="201.666666666667,20.3586387434555"
+                    Point3="201.666666666667,24.3586387434555" />
+                  <mssgle:LineSegment
+                    End="201.666666666667,43" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="85.5919856770833,25.3586387434555,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="359.180555555556,235.944444444444">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.277777777778"
+              Start="0,0"
+              End="0,42.777777777778">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.777777777778" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -694,5 +1238,89 @@
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Foreach Loop Container\Data Flow Task\Se lee el archivo"
+          TopLeft="82,24" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Foreach Loop Container\Data Flow Task\Suma de fechas"
+          TopLeft="86,116" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Data Flow Task.Paths[Flat File Source Output]"
+          TopLeft="161.5,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Foreach Loop Container\Data Flow Task\Guardar datos"
+          TopLeft="168,201" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="163,158">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="78,43"
+              Start="0,0"
+              End="78,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="4,21.5" />
+                  <mssgle:LineSegment
+                    End="74,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="74,21.5"
+                    Point2="78,21.5"
+                    Point3="78,25.5" />
+                  <mssgle:LineSegment
+                    End="78,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Data Flow Task\Guardar datos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
